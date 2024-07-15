@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <script src="https://kit.fontawesome.com/855f727787.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="/" >Groupie Tracker</a></h1>
+    </header>
+    <div class="search-container">
+      <form method="POST">
+        <div class="search-wrapper">
+          <input type="search" id="search-bar" name="search" placeholder="Search for...">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </div>
+      </form>
+    </div>
+  
+    <div class="container">
+      <div class="card">
+        <img src="{{ .Random1.Image }}" alt="the placeholder image">
+        <h2>{{ .Random1.Name }}</h2>
+        <p>Members: {{ len .Random1.Members}}</p>
+        <p>Member List : {{ range .Random1.Members }}
+          <br> {{. }}
+          {{ end }}
+        </p>
+        <p>Creation Date: {{ .Random1.CreationDate }}</p>
+        <p>First Album: {{ .Random1.FirstAlbum }}</p>
+      </div>
+
+        <div class="card">
+            <img src="{{ .Random2.Image }}" alt="the placeholder image">
+            <h2>{{ .Random2.Name }}</h2>
+            <p>Members: {{ len .Random2.Members}}</p>
+            <p>Member List : {{ range .Random2.Members }}
+                <br> {{ . }}
+                {{ end }}
+            </p>
+            <p>Creation Date: {{ .Random2.CreationDate }}</p>
+            <p>First Album: {{ .Random2.FirstAlbum }}</p>
+        </div>
+
+        <div class="card">
+            <img src="{{ .Random3.Image }}" alt="the placeholder image">
+            <h2>{{ .Random3.Name }}</h2>
+            <p>Members: {{ len .Random3.Members}}</p>
+            <p>Member List : {{ range .Random3.Members }}
+                <br> {{ . }}
+                {{ end }}
+            </p>
+            <p>Creation Date: {{ .Random3.CreationDate }}</p>
+            <p>First Album: {{ .Random3.FirstAlbum }}</p>
+        </div>
+    </div>
+
+    <footer>
+      <p>
+        Project made by : A.Nassuif, S.Cointin & M.Soumare
+      </p>
+    </footer>
+  </body>
+</html>

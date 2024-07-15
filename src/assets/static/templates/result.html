@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="static/css/style.css">
+        <script src="https://kit.fontawesome.com/855f727787.js" crossorigin="anonymous"></script>
+        <title>Result</title>
+    </head>
+    <body>
+        <header>
+            <h1><a href="/" >Groupie Tracker</a></h1>
+        </header>
+        <div class="search-container">
+            <form method="POST">
+              <div class="search-wrapper">
+                <input type="search" id="search-bar" name="search" placeholder="Search for...">
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+            </form>
+          </div>
+
+        <div class="container-result withgap" name="result">
+
+            <div class="card-result" id="photo">
+                <h3>{{ .Artist.Name }}</h3>
+                <img class="image" src="{{ .Artist.Image }}" alt="{{ .Artist.Name }}"/>
+            </div>
+
+            <div class="card-result">
+                <h4>INFORMATION:</h4>
+                <p>Members: {{ len .Artist.Members}}</p>
+                <p>Member List : {{ range .Artist.Members }}
+                    <br> {{. }}
+                    {{ end }}
+                </p>
+                <br>
+                <p>Creation Date: {{ .Artist.CreationDate }}</p>
+                <p>First Album: {{ .Artist.FirstAlbum }}</p>
+                <br>
+                <p>
+                    Upcoming Tour Dates :
+                    <br/>
+                    {{ range $key, $value := .Concerts.Dates }}{{ $key }} :<br/>
+                        {{ range $value }}{{ . }}<br/>{{ end }}
+                    {{ end }}
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>
+              Project made by : A.Nassuif, S.Cointin & M.Soumare
+            </p>
+          </footer>
+
+    </body>
+</html>

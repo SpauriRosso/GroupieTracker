@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+    <link rel="stylesheet"  href="static/css/style.css">
+    <script src="https://kit.fontawesome.com/855f727787.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <h1><a href="/" >Groupie Tracker</a></h1>
+    </header>
+
+    <div class="search-container">
+        <form method="POST">
+          <div class="search-wrapper">
+            <input type="search" id="search-bar" name="search" placeholder="Search for...">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </div>
+        </form>
+    </div>
+
+    <h2>Error {{ .Code }}</h2>
+    <h3>Oups ! {{ .Err }}  </h3>
+    <button class="button">
+        <a href="../home" class="button-link">Back to home</a>
+    </button>
+
+    <footer id="foot-error">
+        <p>
+          Project made by : A.Nassuif, S.Cointin & M.Soumare
+        </p>
+    </footer>
+</body>
+</html>
+
+
+
+ 
