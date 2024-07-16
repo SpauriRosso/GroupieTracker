@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <link rel="stylesheet" type="text/css" href="static/css/style2.css">
     <script src="https://kit.fontawesome.com/855f727787.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -21,39 +22,46 @@
   
     <div class="container">
       <div class="card">
-        <img src="{{ .Random1.Image }}" alt="the placeholder image">
+        <img src="{{ .Random1.Image }}" alt="image of a random artist or band">
         <h2>{{ .Random1.Name }}</h2>
-        <p>Members: {{ len .Random1.Members}}</p>
-        <p>Member List : {{ range .Random1.Members }}
-          <br> {{. }}
+        
+          <p>Members: {{ len .Random1.Members}}</p>
+          <p>Creation Date: {{ .Random1.CreationDate }}</p>
+          <p>First Album: {{ .Random1.FirstAlbum }}</p>
+          <div class="memberlist">
+          <h3>Member list:</h3><ul>{{ range .Random1.Members }}
+            <li> {{. }} </li>
           {{ end }}
-        </p>
-        <p>Creation Date: {{ .Random1.CreationDate }}</p>
-        <p>First Album: {{ .Random1.FirstAlbum }}</p>
+            </ul>
+          </div>
       </div>
 
         <div class="card">
-            <img src="{{ .Random2.Image }}" alt="the placeholder image">
+            <img src="{{ .Random2.Image }}" alt="image of a random artist or band">
             <h2>{{ .Random2.Name }}</h2>
             <p>Members: {{ len .Random2.Members}}</p>
-            <p>Member List : {{ range .Random2.Members }}
-                <br> {{ . }}
-                {{ end }}
-            </p>
             <p>Creation Date: {{ .Random2.CreationDate }}</p>
             <p>First Album: {{ .Random2.FirstAlbum }}</p>
+            <div class="memberlist">
+            <h3>Member List:</h3> <ul>{{ range .Random2.Members }}
+              <li>{{ . }}</li>
+              {{ end }}
+              </ul>
+            </div>
         </div>
 
         <div class="card">
-            <img src="{{ .Random3.Image }}" alt="the placeholder image">
+            <img src="{{ .Random3.Image }}" alt="image of a random artist or band">
             <h2>{{ .Random3.Name }}</h2>
             <p>Members: {{ len .Random3.Members}}</p>
-            <p>Member List : {{ range .Random3.Members }}
-                <br> {{ . }}
-                {{ end }}
-            </p>
             <p>Creation Date: {{ .Random3.CreationDate }}</p>
             <p>First Album: {{ .Random3.FirstAlbum }}</p>
+            <div class="memberlist">
+            <h3>Member List:</h3> <ul>{{ range .Random3.Members }}
+              <li>{{ . }}</li>
+              {{ end }}
+              </ul>
+              </div>
         </div>
     </div>
 

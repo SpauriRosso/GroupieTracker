@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'Retropulse'; /* Name your font family */
+    src: url('../fonts/Retropulse.ttf');
+}
+@font-face {
+    font-family: 'Last Dream';
+    src: url('../fonts/Last Dream.ttf') format('truetype'),
+        url('../fonts/Last Dream.woff') format('woff'),
+        url('../fonts/Last Dream.woff2') format('woff2');
+  }
+
+  body {
+    font-family: 'Retropulse', serif;
+    color:#3c1518;
+    background: linear-gradient(45deg, #d58936 40%, #f2f3ae 100%);
+  }
+
+  h1 {
+    font-family: 'Last Dream', serif;
+    text-align: center;
+    font-size: 5rem;
+    margin: 0 0 10px 0;
+    color: #3c1518;
+    text-shadow: 0px 4px 0px rgba(108, 24, 24, 0.3);
+  }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.search-wrapper {
+    position: relative;
+  }
+
+.fa-magnifying-glass {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none;
+  }
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 5px;
+  }
+
+#search-bar {
+    width: 100%;
+    padding: 10px 40px 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+
+  h2 {
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  h3 {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+#wrap-button {
+    margin-top: 50px;
+    margin-bottom: 233px;
+    display: flex;
+    justify-content: center; 
+}
+
+  .button {
+    border-radius: 10px;
+    padding: 15px 16px;
+    background: hsla(24, 100%, 32%, 0.8); 
+    font-size: 20px;
+    margin-top: 30px;
+    box-shadow: 0 8px 32px 0 rgb(105, 20, 14, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease;
+  }
+  
+  .button:hover {
+    transform: translateY(-5px); /*TO DO : Modify the animation for something I like better */
+  }
+  
+  .button-link {
+    font-family: 'Retropulse', serif;
+    color: #3c1518;
+    text-decoration: none;
+    text-shadow: 0px 2px 0px rgba(255, 255, 255, 0.2);
+  }
+
+  footer{
+    text-align: center;
+  }

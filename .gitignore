@@ -22,5 +22,6 @@
 go.work
 
 .idea/
+.bckp/
 *.iml
 *.http

@@ -19,31 +19,28 @@
             </form>
           </div>
 
-        <div class="container-result withgap" name="result">
-
-            <div class="card-result" id="photo">
-                <h3>{{ .Artist.Name }}</h3>
-                <img class="image" src="{{ .Artist.Image }}" alt="{{ .Artist.Name }}"/>
-            </div>
+        <div class="container">
 
             <div class="card-result">
-                <h4>INFORMATION:</h4>
+                <h2>{{ .Artist.Name }}</h2>
+                <img class="image" src="{{ .Artist.Image }}" alt="{{ .Artist.Name }}"/>
+            </div>
+            <div class="card">
+                <h2>Information:</h2>
                 <p>Members: {{ len .Artist.Members}}</p>
-                <p>Member List : {{ range .Artist.Members }}
-                    <br> {{. }}
-                    {{ end }}
-                </p>
-                <br>
                 <p>Creation Date: {{ .Artist.CreationDate }}</p>
                 <p>First Album: {{ .Artist.FirstAlbum }}</p>
                 <br>
-                <p>
-                    Upcoming Tour Dates :
-                    <br/>
-                    {{ range $key, $value := .Concerts.Dates }}{{ $key }} :<br/>
-                        {{ range $value }}{{ . }}<br/>{{ end }}
+                <h3>Member List:</h3> <ul>{{ range .Artist.Members }}
+                    <li>{{. }}</li>
                     {{ end }}
-                </p>
+                </ul>
+                <br>
+                <h3>Upcoming Tour Dates:</h3>
+                    <ul>{{ range $key, $value := .Concerts.Dates }}<li>{{ $key }} :<br/>
+                        {{ range $value }}{{ . }}</li><br>{{ end }}
+                    {{ end }}
+                        </ul>
             </div>
         </div>
 
