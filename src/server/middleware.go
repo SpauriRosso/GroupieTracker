@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"groupie-tracker-filters/src/shared"
+	"io"
 	"net/http"
 	"os"
 	"strconv"
@@ -153,14 +154,21 @@ func GetArtistName(ID int) string {
 
 func GetLoc(city string) (float64, float64) {
 	url := fmt.Sprintf("https://maps.googleapis.com/maps/api/geocode/json?address=%v&key=%v", city, shared.MapAPI)
+	url = strings.TrimSpace(url)
+	url = strings.TrimRight(url, "\r\n")
+	//dotlog.Debug(url)
 	resp, err := http.Get(url)
 	if err != nil {
 		te := fmt.Sprintf("%v", err)
 		dotlog.Error(te)
 		return 0, 0
 	}
-	defer resp.Body.Close()
+	defer func(Body io.ReadCloser) {
+		terr := Body.Close()
+		if terr != nil {
 
+		}
+	}(resp.Body)
 	var result struct {
 		Results []struct {
 			Geometry struct {
@@ -168,20 +176,17 @@ func GetLoc(city string) (float64, float64) {
 			} `json:"geometry"`
 		} `json:"results"`
 	}
-
 	err = json.NewDecoder(resp.Body).Decode(&result)
 	if err != nil {
 		er := fmt.Sprintf("Error decoding locations JSON: %v", err)
 		dotlog.Error(er)
 		return 0, 0
 	}
-
 	if len(result.Results) > 0 {
 		location := result.Results[0].Geometry.Location
 		Geo = []Geocode{location}
 		return location.Lat, location.Lng
 	}
-
 	dotlog.Error("No results found in the geocoding response")
 	return 0, 0
 }
