@@ -29,6 +29,10 @@
     color: inherit;
 }
 
+.filters {
+    position: relative;
+}
+
 .search-wrapper {
     position: relative;
   }
@@ -56,6 +60,27 @@
     background: rgba(255, 255, 255, 0.8);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
+  }
+
+  #suggestion {
+    margin: 0;
+    padding: 0px 10px 0px 10px;
+    position: absolute;
+    list-style: none;
+    left: 15px;
+    right: 15px;
+    background: rgba(255, 255, 255);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    max-height: 200px; /* Set the maximum height of the suggestion box */
+    overflow-y: auto;  /* Enable vertical scrolling */
+  }
+
+  #suggestion li {
+    margin-top: 10px;
+    list-style: none;
+    background-color: rgba(255, 255, 255);
+    cursor: pointer;
+    color: #3c1518;
   }
 
   h3 {
@@ -124,4 +149,143 @@
     text-align: center;
   }
 
-  
+  .filters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 25px;
+  }
+
+  .creationDate {
+    appearance: none;
+    width: 200px;
+    height: 8px;
+    border-radius: 9999px;
+    background: hsla(24, 100%, 32%, 0.5);
+    cursor: pointer;
+  }
+
+  .creationDate::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cacaca;
+    border-radius: 9999px;
+    background: #3c1518;
+    box-shadow: none;
+  }
+
+
+  .AlbumDate {
+    appearance: none;
+    width: 200px;
+    height: 8px;
+    border-radius: 9999px;
+    background: hsla(24, 100%, 32%, 0.5);
+    cursor: pointer;
+  }
+
+  .AlbumDate::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #cacaca;
+    border-radius: 9999px;
+    background: #3c1518;
+    box-shadow: none;
+  }
+
+
+
+  .range-creation-dates {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .range-album-dates {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .check {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .checkbox-group {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  input[type="submit"] {
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: hsla(24, 100%, 32%, 0.8); 
+    font-size: 16px;
+    margin-top: 30px;
+    box-shadow: 0 8px 32px 0 rgb(105, 20, 14, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    font-family: 'Retropulse', serif;
+    color: #3c1518;
+    text-decoration: none;
+    text-shadow: 0px 2px 0px rgba(255, 255, 255, 0.2);
+}
+
+input[type="submit"]:hover {
+  transform: translateY(-5px);
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px;
+  padding: 20px;
+}
+
+.squircle {
+  width: 250px;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: hsla(24, 100%, 32%, 0.4);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+  padding: 20px;
+}
+
+.squircle:hover {
+  transform: translateY(-5px);
+}
+
+.squircle img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.squircle h2 {
+  margin: 10px 0 5px;
+  font-size: 1.2em;
+  text-align: center;
+  color: #3c1518;
+}
+
+.squircle p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #3c1518;
+}

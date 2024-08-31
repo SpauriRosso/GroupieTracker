@@ -15,9 +15,9 @@ It will be given an API, that consists in four parts:
 
 ## Installation
 
-To install the program in your own computer in order to run it
+To install the program into your own computer in order to run it
 ```shell
-$ git clone https://zone01normandie.org/git/anassuif/groupie-tracker.git
+$ git clone https://zone01normandie.org/git/scointin/groupie-tracker-visualizations.git
 ```
 
 ### Installation using docker

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home</title>
+        <meta charset="UTF-8">
+        <script src="/assets/js/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="static/css/style2.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/855f727787.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container" id="info">
+            {{ range . }}
+            <div class="squircle" onclick="submitSearch('{{ .Name }}')">
+                <img src="{{ .Image }}" alt="image of {{ .Name }}">
+                <h2>{{ .Name }}</h2>
+                <p>Creation Date: {{ .CreationDate }}</p>
+                <p>Members: {{ len .Members }}</p>
+                <p>First Album: {{ .FirstAlbum }}</p>
+            </div>
+            {{ end }}
+        </div>
+    </body>
+</html>

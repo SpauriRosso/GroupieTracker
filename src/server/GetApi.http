@@ -1,0 +1,4 @@
+GET https://groupietrackers.herokuapp.com/api/artists/1
+#https://maps.googleapis.com/maps/api/geocode/json?address=north_carolina-usa&key=AIzaSyAufbWsHCY8lVvhtBk77L3YYHdxSgxbwDQ
+#GET https://api.openweathermap.org/geo/1.0/direct?q=pari&limit=1&appid=aad108476d8a1244eba80ad1b18e53ac
+#GET https://api.maptiler.com/geocoding/penrose-new_zeland.json?fuzzyMatch=true&limit=1&key=8VfW1XAht2eC6cjruiX4

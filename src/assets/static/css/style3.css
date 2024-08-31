@@ -30,33 +30,54 @@
 }
 
 .search-wrapper {
-    position: relative;
-  }
+  position: relative;
+}
 
 .fa-magnifying-glass {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #888;
-    pointer-events: none;
-  }
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+}
 
 .search-container {
-    max-width: 600px;
-    margin: 0 auto 5px;
-  }
+  max-width: 600px;
+  margin: 0 auto 5px;
+}
 
 #search-bar {
-    width: 100%;
-    padding: 10px 40px 10px 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-  }
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+#suggestion {
+  margin: 0;
+  padding: 0px 10px 0px 10px;
+  position: absolute;
+  list-style: none;
+  left: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  max-height: 200px; /* Set the maximum height of the suggestion box */
+  overflow-y: auto;  /* Enable vertical scrolling */
+}
+
+#suggestion li {
+  margin-top: 10px;
+  list-style: none;
+  background-color: rgba(255, 255, 255);
+  cursor: pointer;
+  color: #3c1518;
+}
 
   h2 {
     margin-top: 50px;

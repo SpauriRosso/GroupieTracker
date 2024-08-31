@@ -2,7 +2,7 @@ package Serveur
 
 import (
 	"encoding/json"
-	"groupie-tracker/src/utils"
+	"groupie-tracker-filters/src/utils"
 	"io/ioutil"
 	"net/http"
 	"strings"
@@ -41,20 +41,6 @@ func GetId(URL string, name string) int {
 	}
 	return 0
 }
-
-//func RandArtistPage() {
-//	var i = 1
-//	var artist Artist
-//	URL := "https://groupietrackers.herokuapp.com/api/artists/"
-//
-//	for i != 4 {
-//		URL = "https://groupietrackers.herokuapp.com/api/artists/" + strconv.Itoa(utils.GetRandArtist())
-//		err := GetInfo(URL, &artist)
-//		utils.CheckErr(err)
-//		fmt.Printf("%+v\n\n \n", artist)
-//		i++
-//	}
-//}
 
 func GetInfo(URL string, data interface{}) error {
 	resp, err := http.Get(URL)

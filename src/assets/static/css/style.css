@@ -59,39 +59,66 @@ a{
   box-sizing: border-box;
 }
 
+#suggestion {
+  margin: 0;
+  padding: 0px 10px 0px 10px;
+  position: absolute;
+  list-style: none;
+  left: 15px;
+  right: 15px;
+  background: rgba(255, 255, 255);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  max-height: 200px; /* Set the maximum height of the suggestion box */
+  overflow-y: auto;  /* Enable vertical scrolling */
+  z-index: 1;
+}
+
+#suggestion li {
+  margin-top: 10px;
+  list-style: none;
+  background-color: rgba(255, 255, 255);
+  cursor: pointer;
+  color: #3c1518;
+}
+
 .container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-  gap: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr; /* Wider third column */
+  grid-template-rows: auto auto 1fr; /* Rows adjust based on content */
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  padding-left: 100px;
+  padding-right: 100px;
+  margin-top: 45px;
 }
 
  #result {
   max-height: 600px;
  }
 
+ .text {
+  display: flex;
+  flex-direction: column;
+ }
+
  .card-result {
-  max-height: 300px;
-  min-width: 250px;
-  max-width: 300px;
+  grid-area: 1 / 1 / 2 / 3;
+  height: 300px;
+  width: 250px;
+  background-color: hsla(24, 100%, 32%, 0.4);
+  border-radius: 10px;
+  padding: 30px 30px 30px 30px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card {
+  grid-area: 2 / 1 / 3 / 3; /* Change from 3 / 1 / 6 / 3 */
+  width: 300px;
   background-color: hsla(24, 100%, 32%, 0.4);
   border-radius: 10px;
   padding: 30px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 10px 0;
-}
-
-.card {
-  flex: 1;
-  min-width: 250px;
-  max-width: 300px;
-  background-color: hsla(24, 100%, 32%, 0.4);
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin: 10px 0;
+  margin-top: 25px;
 }
 
 .image {
@@ -104,6 +131,18 @@ h2 {
   margin-top: 0px;
 }
 
+#map {
+  grid-area: 1 / 3 / 3 / 4;
+  height: 1200px;
+  width: 800px;
+  border-radius: 10px;
+  /*position: relative;*/
+  /*z-index: -1;*/
+}
+
 footer{
+  margin-top: 35px;
   text-align: center;
 }
+
+

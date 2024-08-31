@@ -1,8 +1,11 @@
 package Serveur
 
 import (
-	"groupie-tracker/src/shared"
-	"groupie-tracker/src/utils"
+	"encoding/json"
+	"fmt"
+	"github.com/SpauriRosso/dotlog"
+	"groupie-tracker-filters/src/shared"
+	"groupie-tracker-filters/src/utils"
 	"html/template"
 	"log"
 	"net/http"
@@ -77,6 +80,9 @@ func (s *Server) routes() {
 	s.mux.HandleFunc("/500", s.errorHandler)
 	s.mux.HandleFunc("/404", s.notFoundHandler)
 	s.mux.HandleFunc("/405", s.notAllowedHandler)
+	s.mux.HandleFunc("/suggestion", s.SuggestHandler)
+	s.mux.HandleFunc("/filters", s.filtersHandler)
+	s.mux.HandleFunc("/geocode", s.GetGeoCode)
 }
 
 func (s *Server) Start(addr string) error {
@@ -149,7 +155,7 @@ func (s *Server) resultHandler(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/405", http.StatusSeeOther)
 		return
 	}
-	s.formSubmitted = false
+	//s.formSubmitted = false
 
 	var Result Art
 	var Concert Date
@@ -245,3 +251,109 @@ func (s *Server) notAllowedHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 // End of error Handler
+func (s *Server) SuggestHandler(w http.ResponseWriter, r *http.Request) {
+	query := r.FormValue("search")
+	//q := fmt.Sprintf("User query: %v", query)
+	//dotlog.Info(q)
+
+	suggestions := GetSugg(query)
+	if query == "" || len(suggestions) < 1 {
+		w.WriteHeader(http.StatusNoContent)
+		return
+	}
+
+	tmp := `
+    <ul>
+        {{range .}}
+        <li>{{ . }}</li>
+        {{end}}
+    </ul>
+    `
+	t := template.Must(template.New("suggestion").Parse(tmp))
+	err := t.Execute(w, suggestions)
+	if err != nil {
+		fmt.Println("Error executing template:", err)
+		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
+		return
+	}
+}
+
+func (s *Server) filtersHandler(w http.ResponseWriter, r *http.Request) {
+	dotlog.Debug("Filters handler called")
+	err := r.ParseForm()
+	if err != nil {
+		utils.LogError(err)
+		http.Error(w, "Bad Request", http.StatusBadRequest)
+		return
+	}
+	// Retrieve filters input
+	memberCount := r.Form["qMemberCount"] // Making a tab of all instances (checkboxes in our case) of qMemberCount
+	var memberCounts []int
+	for _, v := range memberCount {
+		iv, er := strconv.Atoi(v)
+		if er != nil {
+			utils.LogError(er)
+			continue
+		}
+		memberCounts = append(memberCounts, iv)
+	}
+	creaDate := r.FormValue("qCreationDate")
+	ecreaDate := r.FormValue("qeCreationDate")
+	fAlbum := r.FormValue("qAlbumDate")
+	efAlbum := r.FormValue("qeAlbumDate")
+
+	// This one does nothing you can even remove this line if you ever want to
+	res := Filters(creaDate, ecreaDate, fAlbum, efAlbum, memberCounts)
+	// Retrieve filtered artists
+	var filtRes []Sartists
+	for _, id := range res {
+		for _, artist := range Sug {
+			if artist.Id == id {
+				filtRes = append(filtRes, artist)
+				break
+			}
+		}
+	}
+
+	// Render filtered artists
+	tmpl, _ := template.ParseFiles(filepath.Join(s.templateDir, "filters.html"))
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+	err = tmpl.Execute(w, filtRes)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+	}
+}
+
+func (s *Server) GetGeoCode(w http.ResponseWriter, r *http.Request) {
+	// Get key from request
+	key := r.URL.Query().Get("city")
+	if key == "" {
+		http.Error(w, "City name is empty", http.StatusBadRequest)
+		return
+	}
+
+	GetLoc(key)
+	var latitude, longitude float64
+	for _, v := range Geo {
+		latitude = v.Lat
+		longitude = v.Lng
+	}
+
+	// Configure response type
+	w.Header().Set("Content-Type", "application/json")
+	// Create and send json
+	response := struct {
+		Latitude  float64 `json:"latitude"`
+		Longitude float64 `json:"longitude"`
+	}{
+		Latitude:  latitude,
+		Longitude: longitude,
+	}
+
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Error encoding response", http.StatusInternalServerError)
+	}
+}

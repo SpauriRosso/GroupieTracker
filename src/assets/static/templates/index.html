@@ -1,74 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>GT - Home</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="static/img/android-chrome-512x512.png">
+    <link rel="manifest" href="static/js/site.webmanifest">
+    <script src="/static/js/script.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.1"></script>
     <link rel="stylesheet" type="text/css" href="static/css/style2.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/855f727787.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1><a href="/" >Groupie Tracker</a></h1>
-    </header>
-    <div class="search-container">
-      <form method="POST">
-        <div class="search-wrapper">
-          <input type="search" id="search-bar" name="search" placeholder="Search for...">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </div>
-      </form>
-    </div>
-  
-    <div class="container">
-      <div class="card">
-        <img src="{{ .Random1.Image }}" alt="image of a random artist or band">
-        <h2>{{ .Random1.Name }}</h2>
-        
-          <p>Members: {{ len .Random1.Members}}</p>
-          <p>Creation Date: {{ .Random1.CreationDate }}</p>
-          <p>First Album: {{ .Random1.FirstAlbum }}</p>
-          <div class="memberlist">
-          <h3>Member list:</h3><ul>{{ range .Random1.Members }}
-            <li> {{. }} </li>
-          {{ end }}
-            </ul>
-          </div>
-      </div>
+<header>
+<!--    <h1><a href="/" >Groupie Tracker</a></h1>-->
+    <a href="/" style="display: flex; justify-content: center; align-items: center; text-decoration: none;">
+        <img src="static/img/android-chrome-192x192.png" alt="Groupie Tracker" style="display: block;">
+    </a>
+</header>
 
-        <div class="card">
-            <img src="{{ .Random2.Image }}" alt="image of a random artist or band">
-            <h2>{{ .Random2.Name }}</h2>
-            <p>Members: {{ len .Random2.Members}}</p>
-            <p>Creation Date: {{ .Random2.CreationDate }}</p>
-            <p>First Album: {{ .Random2.FirstAlbum }}</p>
-            <div class="memberlist">
-            <h3>Member List:</h3> <ul>{{ range .Random2.Members }}
-              <li>{{ . }}</li>
-              {{ end }}
-              </ul>
+<div class="search-container">
+    <form method="POST">
+        <div class="search-wrapper">
+            <input type="search" id="search-bar" name="search" placeholder="Search for..." hx-post="/suggestion" hx-trigger="keyup changed delay:1000ms" hx-target="#suggestion">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <ul id="suggestion">
+            </ul>
+        </div>
+    </form>
+</div>
+
+<form hx-post="/filters" hx-trigger="submit" hx-target="#info" hx-swap="outerHTML"
+      hx-on::before-request="console.log('Sending request to /filters');"
+      hx-on::after-request="console.log('Request completed');">
+    <div class="filters">
+        <div class="range">
+            <div class="range-creation-dates">
+                <p>Creation date (start)</p>
+                <input class="creationDate" name="qCreationDate" type="range" min="1939" max="2020" value="1939" step="1" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">1939</output>
+                <p>Creation date (end)</p>
+                <input class="creationDate" name="qeCreationDate" type="range" min="1939" max="2020" value="1939" step="1" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">1939</output>
+            </div>
+            <div class="range-album-dates">
+                <p>Album Date (start)</p>
+                <input class="AlbumDate" name="qAlbumDate" type="range" min="1939" max="2020" value="1939" step="1" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">1939</output>
+                <p>Album Date (end)</p>
+                <input class="AlbumDate" name="qeAlbumDate" type="range" min="1939" max="2020" value="1939" step="1" oninput="this.nextElementSibling.value = this.value">
+                <output class="slider-value">1939</output>
             </div>
         </div>
-
-        <div class="card">
-            <img src="{{ .Random3.Image }}" alt="image of a random artist or band">
-            <h2>{{ .Random3.Name }}</h2>
-            <p>Members: {{ len .Random3.Members}}</p>
-            <p>Creation Date: {{ .Random3.CreationDate }}</p>
-            <p>First Album: {{ .Random3.FirstAlbum }}</p>
-            <div class="memberlist">
-            <h3>Member List:</h3> <ul>{{ range .Random3.Members }}
-              <li>{{ . }}</li>
-              {{ end }}
-              </ul>
-              </div>
+        <br>
+        <div class="check">
+            <p>Members</p>
+            <div class="checkbox-group">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member1" name="qMemberCount" value="1">
+                    <label for="member1">1</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member2" name="qMemberCount" value="2">
+                    <label for="member2">2</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member3" name="qMemberCount" value="3">
+                    <label for="member3">3</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member4" name="qMemberCount" value="4">
+                    <label for="member4">4</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member5" name="qMemberCount" value="5">
+                    <label for="member5">5</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member6" name="qMemberCount" value="6">
+                    <label for="member6">6</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member7" name="qMemberCount" value="7">
+                    <label for="member7">7</label>
+                </div>
+                <div class="checkbox-container">
+                    <input type="checkbox" id="member8" name="qMemberCount" value="8">
+                    <label for="member8">8</label>
+                </div>
+            </div>
         </div>
     </div>
+    <input type="submit" value="Apply filters">
+</form>
 
-    <footer>
-      <p>
+<div class="container" id="info">
+    <div class="card" onclick="submitSearch('{{ .Random1.Name }}')">
+        <img src="{{ .Random1.Image }}" alt="image of a random artist or band">
+        <h2>{{ .Random1.Name }}</h2>
+        <p>Members: {{ len .Random1.Members}}</p>
+        <p>Creation Date: {{ .Random1.CreationDate }}</p>
+        <p>First Album: {{ .Random1.FirstAlbum }}</p>
+<!--        <div class="memberlist">-->
+<!--            <h3>Member list:</h3><ul>{{ range .Random1.Members }}-->
+<!--            <li> {{. }} </li>-->
+<!--            {{ end }}-->
+<!--        </ul>-->
+<!--        </div>-->
+    </div>
+
+    <div class="card" onclick="submitSearch('{{ .Random2.Name }}')">
+        <img src="{{ .Random2.Image }}" alt="image of a random artist or band">
+        <h2>{{ .Random2.Name }}</h2>
+        <p>Members: {{ len .Random2.Members}}</p>
+        <p>Creation Date: {{ .Random2.CreationDate }}</p>
+        <p>First Album: {{ .Random2.FirstAlbum }}</p>
+<!--        <div class="memberlist">-->
+<!--            <h3>Member List:</h3> <ul>{{ range .Random2.Members }}-->
+<!--            <li>{{ . }}</li>-->
+<!--            {{ end }}-->
+<!--        </ul>-->
+<!--        </div>-->
+    </div>
+
+    <div class="card" onclick="submitSearch('{{ .Random3.Name }}')">
+        <img src="{{ .Random3.Image }}" alt="image of a random artist or band">
+        <h2>{{ .Random3.Name }}</h2>
+        <p>Members: {{ len .Random3.Members}}</p>
+        <p>Creation Date: {{ .Random3.CreationDate }}</p>
+        <p>First Album: {{ .Random3.FirstAlbum }}</p>
+<!--        <div class="memberlist">-->
+<!--            <h3>Member List:</h3> <ul>{{ range .Random3.Members }}-->
+<!--            <li>{{ . }}</li>-->
+<!--            {{ end }}-->
+<!--        </ul>-->
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>
         Project made by : A.Nassuif, S.Cointin & M.Soumare
-      </p>
-    </footer>
-  </body>
+    </p>
+</footer>
+
+</body>
 </html>

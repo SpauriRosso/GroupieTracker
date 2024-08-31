@@ -1,0 +1,235 @@
+@font-face {
+    font-family: 'Retropulse'; /* Name your font family */
+    src: url('../fonts/Retropulse.ttf');
+}
+@font-face {
+    font-family: 'Last Dream';
+    src: url('../fonts/Last Dream.ttf') format('truetype'),
+        url('../fonts/Last Dream.woff') format('woff'),
+        url('../fonts/Last Dream.woff2') format('woff2');
+  }
+
+body {
+  font-family: 'Retropulse', serif;
+    background: linear-gradient(45deg, #d58936 40%, #f2f3ae 100%);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 768px) {
+    body {
+      font-size: 18px;
+    }
+  }
+
+  a{
+    text-decoration: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    cursor: pointer;
+    outline: none;
+    width: 100%;
+    height: 100%;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.fa-magnifying-glass {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  pointer-events: none;
+}
+
+#search-bar {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card {
+  width: 90%;
+  max-width: 400px;
+  margin: 10px 0;
+  background: hsla(24, 100%, 32%, 0.4);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 8px 32px 0 rgb(105, 20, 14, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.3s ease;
+}
+
+/* For landscape orientation */
+@media (orientation: landscape) {
+  .container {
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+
+  .card {
+    width: 30%;
+    max-width: none;
+    margin: 0 10px;
+  }
+}
+
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  .card img {
+    max-width: 100%;
+    height: auto;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  h1 {
+    font-family: 'Last Dream', serif !important;
+    font-size: 2rem;
+    /* font-size: 80px; */
+    margin: 0 0 10px 0;
+    color: #3c1518;
+    text-shadow: 0px 4px 0px rgba(108, 24, 24, 0.3);
+  }
+
+  .card h2{
+  text-align: center;
+  font-size: 1.5rem;
+  color: #3c1518;
+}
+  
+  h3{
+    color: #3c1518;
+    
+  }
+  ul{
+    color: #3c1518;
+  }
+  p {
+    margin: 0 0 5px 0;
+    color: #3c1518;
+  }
+  .tour-dates {
+    margin-top: 15px;
+    font-size: 0.9em;
+  }
+  #search-results {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgb(105, 20, 14, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    margin-top: 20px;
+    max-width: 600px;
+    width: 100%;
+    display: none;
+  }
+
+  .container-result {
+    display: flex;
+    mask-size: auto !important;
+    padding: 20px;
+  }
+
+  .card-result {
+    background: hsla(24, 100%, 32%, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 32px 0 rgb(105, 20, 14, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease;
+  }
+
+  .photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  .info {
+    display: flex;
+    overflow: auto;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: opacity(10);
+    width: 100%;
+    height: auto;
+    border-radius: 1rem;
+  }
+
+  .withgap {
+    gap: 2rem
+  }
+
+  .image {
+    border-radius: 1rem;
+    max-width: 100%;
+    height: auto;
+  }
+
+  footer{
+    margin-top: 15px;
+  }
+
+  .button {
+    border-radius: 10px;
+    padding: 15px 16px;
+    background: hsla(24, 100%, 32%, 0.8); 
+    font-size: 20px;
+    margin-top: 30px;
+    box-shadow: 0 8px 32px 0 rgb(105, 20, 14, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    transition: transform 0.3s ease;
+  }
+  
+  .button:hover {
+    transform: translateY(-5px); /*TO DO : Modify the animation for something I like better */
+  }
+  
+  .button-link {
+    font-family: 'Retropulse', serif;
+    color: #3c1518;
+    text-decoration: none;
+    text-shadow: 0px 2px 0px rgba(255, 255, 255, 0.2);
+  }
+
+  #foot-error{
+    margin-top: 200px;
+  }
+
