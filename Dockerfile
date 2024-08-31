@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY . .
 
+RUN go mod tidy
 RUN go test --cover -v ./...
 RUN go build -v -o groupie
 
